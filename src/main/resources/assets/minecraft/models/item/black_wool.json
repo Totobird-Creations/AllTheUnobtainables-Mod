@@ -1,0 +1,13 @@
+{
+  "parent": "block/black_wool",
+  "overrides": [
+    {
+      "predicate": {"special_placement": 0.01},
+      "model": "unobtainables:block/end_portal"
+    },
+    {
+      "predicate": {"special_placement": 0.02},
+      "model": "unobtainables:block/end_gateway"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "block/piston",
+  "overrides": [
+    {
+      "predicate": {"special_placement": 0.01},
+      "model": "block/piston_head"
+    }
+  ]
+}

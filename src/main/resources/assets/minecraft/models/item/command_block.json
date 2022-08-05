@@ -1,0 +1,9 @@
+{
+  "parent": "block/command_block",
+  "overrides": [
+    {
+      "predicate": {"conditional": 1},
+      "model": "block/command_block_conditional"
+    }
+  ]
+}

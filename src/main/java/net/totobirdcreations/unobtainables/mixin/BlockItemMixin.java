@@ -57,16 +57,6 @@ public class BlockItemMixin {
                             .with(NetherPortalBlock.AXIS, context.getPlayerFacing().rotateYClockwise().getAxis());
                 }
 
-            } else if (this.stackIsItem(stack, Items.ORANGE_WOOL)) {
-                if (placeId.equals("fire")) {
-                    placeState = Blocks.FIRE.getDefaultState();
-                }
-
-            } else if (this.stackIsItem(stack, Items.LIGHT_BLUE_WOOL)) {
-                if (placeId.equals("soul_fire")) {
-                    placeState = Blocks.SOUL_FIRE.getDefaultState();
-                }
-
             } else if (this.stackIsItem(stack, Items.PISTON)) {
                 if (placeId.equals("moving_piston")) {
                     placeState = Blocks.MOVING_PISTON.getDefaultState();

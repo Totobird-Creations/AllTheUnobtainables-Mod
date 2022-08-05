@@ -1,0 +1,9 @@
+{
+  "parent": "block/purple_wool",
+  "overrides": [
+    {
+      "predicate": {"special_placement": 0.01},
+      "model": "block/nether_portal_ns"
+    }
+  ]
+}

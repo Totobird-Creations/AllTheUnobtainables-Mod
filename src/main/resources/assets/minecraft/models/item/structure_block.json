@@ -1,0 +1,21 @@
+{
+  "parent": "block/structure_block",
+  "overrides": [
+    {
+      "predicate": {"mode": 0.1},
+      "model": "block/structure_block_load"
+    },
+    {
+      "predicate": {"mode": 0.2},
+      "model": "block/structure_block_corner"
+    },
+    {
+      "predicate": {"mode": 0.3},
+      "model": "block/structure_block_save"
+    },
+    {
+      "predicate": {"mode": 0.4},
+      "model": "block/structure_block_data"
+    }
+  ]
+}

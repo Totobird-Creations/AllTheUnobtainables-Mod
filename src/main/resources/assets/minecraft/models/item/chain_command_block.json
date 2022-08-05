@@ -1,0 +1,9 @@
+{
+  "parent": "block/chain_command_block",
+  "overrides": [
+    {
+      "predicate": {"conditional": 1},
+      "model": "block/chain_command_block_conditional"
+    }
+  ]
+}

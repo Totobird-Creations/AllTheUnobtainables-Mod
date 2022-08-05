@@ -6,6 +6,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -72,32 +73,22 @@ public class Unobtainables implements ClientModInitializer {
 		stack = newStack(Items.BLACK_WOOL);
 		stack.getOrCreateNbt().putString("specialPlacement", "end_portal");
 		putName(stack, "block.minecraft.end_portal");
-		putGlint(stack);
+		//putGlint(stack);
 		stacks.add(stack);
 		stack = newStack(Items.BLACK_WOOL);
 		stack.getOrCreateNbt().putString("specialPlacement", "end_gateway");
 		putName(stack, "block.minecraft.end_gateway");
-		putGlint(stack);
+		//putGlint(stack);
 		stacks.add(stack);
 		stack = newStack(Items.PURPLE_WOOL);
 		stack.getOrCreateNbt().putString("specialPlacement", "nether_portal");
 		putName(stack, "block.minecraft.nether_portal");
-		putGlint(stack);
-		stacks.add(stack);
-		stack = newStack(Items.ORANGE_WOOL);
-		stack.getOrCreateNbt().putString("specialPlacement", "fire");
-		putName(stack, "block.minecraft.fire");
-		putGlint(stack);
-		stacks.add(stack);
-		stack = newStack(Items.LIGHT_BLUE_WOOL);
-		stack.getOrCreateNbt().putString("specialPlacement", "soul_fire");
-		putName(stack, "block.minecraft.soul_fire");
-		putGlint(stack);
+		//putGlint(stack);
 		stacks.add(stack);
 		stack = newStack(Items.PISTON);
 		stack.getOrCreateNbt().putString("specialPlacement", "moving_piston");
 		putName(stack, "block.minecraft.moving_piston");
-		putGlint(stack);
+		//putGlint(stack);
 		stacks.add(stack);
 	}
 
@@ -226,6 +217,39 @@ public class Unobtainables implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+
+		ModelPredicateProviderRegistry.register(Items.STRUCTURE_BLOCK, new Identifier("mode"), (stack, world, entity, i) -> switch (
+				stack.getOrCreateSubNbt("BlockEntityTag").getString("mode").toLowerCase()
+		) {
+			case "load"   -> 0.1f;
+			case "corner" -> 0.2f;
+			case "save"   -> 0.3f;
+			case "data"   -> 0.4f;
+			default       -> 0.0f;
+		});
+		ModelPredicateProviderRegistry.register(Items.COMMAND_BLOCK, new Identifier("conditional"), (stack, world, entity, i) ->
+				stack.getOrCreateSubNbt("BlockStateTag").getString("conditional").equalsIgnoreCase("true") ? 1.0f : 0.0f
+		);
+		ModelPredicateProviderRegistry.register(Items.CHAIN_COMMAND_BLOCK, new Identifier("conditional"), (stack, world, entity, i) ->
+				stack.getOrCreateSubNbt("BlockStateTag").getString("conditional").equalsIgnoreCase("true") ? 1.0f : 0.0f
+		);
+		ModelPredicateProviderRegistry.register(Items.REPEATING_COMMAND_BLOCK, new Identifier("conditional"), (stack, world, entity, i) ->
+				stack.getOrCreateSubNbt("BlockStateTag").getString("conditional").equalsIgnoreCase("true") ? 1.0f : 0.0f
+		);
+		ModelPredicateProviderRegistry.register(Items.BLACK_WOOL, new Identifier("special_placement"), (stack, world, entity, i) -> switch(
+				stack.getOrCreateNbt().getString("specialPlacement").toLowerCase()
+		) {
+			case "end_portal"  -> 0.01f;
+			case "end_gateway" -> 0.02f;
+			default            -> 0.0f;
+		});
+		ModelPredicateProviderRegistry.register(Items.PURPLE_WOOL, new Identifier("special_placement"), (stack, world, entity, i) ->
+				stack.getOrCreateNbt().getString("specialPlacement").equalsIgnoreCase("nether_portal") ? 0.01f : 0.0f
+		);
+		ModelPredicateProviderRegistry.register(Items.PISTON, new Identifier("special_placement"), (stack, world, entity, i) ->
+				stack.getOrCreateNbt().getString("specialPlacement").equalsIgnoreCase("moving_piston") ? 0.01f : 0.0f
+		);
+
 		LOGGER.info("Initialised.");
 	}
 
