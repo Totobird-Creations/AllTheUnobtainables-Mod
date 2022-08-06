@@ -1,0 +1,9 @@
+{
+  "parent": "block/light_blue_wool",
+  "overrides": [
+    {
+      "predicate": {"special_placement": 0.01},
+      "model": "block/soul_fire_floor0"
+    }
+  ]
+}

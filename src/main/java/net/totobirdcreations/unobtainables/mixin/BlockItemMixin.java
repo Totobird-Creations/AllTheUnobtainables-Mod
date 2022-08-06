@@ -8,9 +8,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import net.totobirdcreations.unobtainables.Unobtainables;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -60,6 +58,16 @@ public class BlockItemMixin {
             } else if (this.stackIsItem(stack, Items.PISTON)) {
                 if (placeId.equals("moving_piston")) {
                     placeState = Blocks.MOVING_PISTON.getDefaultState();
+                }
+
+            } else if (this.stackIsItem(stack, Items.ORANGE_WOOL)) {
+                if (placeId.equals("fire")) {
+                    placeState = Blocks.FIRE.getDefaultState();
+                }
+
+            } else if (this.stackIsItem(stack, Items.LIGHT_BLUE_WOOL)) {
+                if (placeId.equals("soul_fire")) {
+                    placeState = Blocks.SOUL_FIRE.getDefaultState();
                 }
 
             }

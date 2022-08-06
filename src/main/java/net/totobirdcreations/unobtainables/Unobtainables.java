@@ -90,6 +90,16 @@ public class Unobtainables implements ClientModInitializer {
 		putName(stack, "block.minecraft.moving_piston");
 		//putGlint(stack);
 		stacks.add(stack);
+		stack = newStack(Items.ORANGE_WOOL);
+		stack.getOrCreateNbt().putString("specialPlacement", "fire");
+		putName(stack, "block.minecraft.fire");
+		//putGlint(stack);
+		stacks.add(stack);
+		stack = newStack(Items.LIGHT_BLUE_WOOL);
+		stack.getOrCreateNbt().putString("specialPlacement", "soul_fire");
+		putName(stack, "block.minecraft.soul_fire");
+		//putGlint(stack);
+		stacks.add(stack);
 	}
 
 	public static void addCommandBlockStacks(List<ItemStack> stacks) {
@@ -248,6 +258,12 @@ public class Unobtainables implements ClientModInitializer {
 		);
 		ModelPredicateProviderRegistry.register(Items.PISTON, new Identifier("special_placement"), (stack, world, entity, i) ->
 				stack.getOrCreateNbt().getString("specialPlacement").equalsIgnoreCase("moving_piston") ? 0.01f : 0.0f
+		);
+		ModelPredicateProviderRegistry.register(Items.ORANGE_WOOL, new Identifier("special_placement"), (stack, world, entity, i) ->
+				stack.getOrCreateNbt().getString("specialPlacement").equalsIgnoreCase("fire") ? 0.01f : 0.0f
+		);
+		ModelPredicateProviderRegistry.register(Items.LIGHT_BLUE_WOOL, new Identifier("special_placement"), (stack, world, entity, i) ->
+				stack.getOrCreateNbt().getString("specialPlacement").equalsIgnoreCase("soul_fire") ? 0.01f : 0.0f
 		);
 
 		LOGGER.info("Initialised.");

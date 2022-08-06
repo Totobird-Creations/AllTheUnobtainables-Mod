@@ -1,0 +1,9 @@
+{
+  "parent": "block/orange_wool",
+  "overrides": [
+    {
+      "predicate": {"special_placement": 0.01},
+      "model": "block/fire_floor0"
+    }
+  ]
+}
