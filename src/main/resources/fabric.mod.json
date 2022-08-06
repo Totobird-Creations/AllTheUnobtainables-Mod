@@ -23,7 +23,7 @@
     ]
   },
   "mixins": [
-    "mixins.mod.json"
+    "unobtainables.mixins.json"
   ],
 
   "depends": {
